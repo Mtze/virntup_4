@@ -9,7 +9,7 @@ const bit<16> TYPE_IPV4 = 0x800;
 *************************************************************************/
 
 typedef bit<9>  egressSpec_t;
-typedef bit<9>  vSwitchNumber_t;
+typedef bit<9>  vRouterNumber_t;
 typedef bit<48> macAddr_t;
 typedef bit<32> ip4Addr_t;
 
@@ -88,11 +88,11 @@ control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
 
-    /*Local Variable which holds the vSwitchNumber*/
-    vSwitchNumber_t vSwitchNumber = 0;
+    /*Local Variable which holds the vRouterNumber*/
+    vRouterNumber_t vRouterNumber = 0;
 
-    action setVSwitchNumber(vSwitchNumber_t vSwitchNumberFromTable){
-        vSwitchNumber = vSwitchNumberFromTable;
+    action setVSwitchNumber(vRouterNumber_t vRouterNumberFromTable){
+        vRouterNumber = vRouterNumberFromTable;
     }
 
     action ipv4Forward(macAddr_t dstAddr, egressSpec_t port){
@@ -103,15 +103,11 @@ control MyIngress(inout headers hdr,
     }
     
     action dropAction() {
-        /* TODO: Add useful error message. (Extend ICMP?) */
         mark_to_drop(standard_metadata);
     }
     
 
-    /* This table contains the mapping between the 
-        ingress_port -> vSwitchNumber 
-    */
-    table vSwitchNumberMatching {
+    table vRouterNumberMatching {
         key = {
             standard_metadata.ingress_port : exact;
         }
@@ -123,13 +119,10 @@ control MyIngress(inout headers hdr,
         default_action = dropAction();
     }
     
-    /* This table contains the mapping between the 
-       TODO
-    */
     table ipv4NextHopLPM {
         key = {
             hdr.ipv4.dstAddr: lpm;
-	    vSwitchNumber: exact;
+	    vRouterNumber: exact;
         }
 	
         actions = {
@@ -142,7 +135,7 @@ control MyIngress(inout headers hdr,
 
     apply {
         if (hdr.ipv4.isValid()) {
-            vSwitchNumberMatching.apply();
+            vRouterNumberMatching.apply();
             ipv4NextHopLPM.apply();
         }
     }
