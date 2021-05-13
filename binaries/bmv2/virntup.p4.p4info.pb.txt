@@ -3,9 +3,9 @@ pkg_info {
 }
 tables {
   preamble {
-    id: 38524729
-    name: "MyIngress.vSwitchNumberMatching"
-    alias: "vSwitchNumberMatching"
+    id: 33725590
+    name: "MyIngress.vRouterNumberMatching"
+    alias: "vRouterNumberMatching"
   }
   match_fields {
     id: 1
@@ -35,7 +35,7 @@ tables {
   }
   match_fields {
     id: 2
-    name: "vSwitchNumber"
+    name: "vRouterNumber"
     bitwidth: 9
     match_type: EXACT
   }
@@ -55,7 +55,7 @@ actions {
   }
   params {
     id: 1
-    name: "vSwitchNumberFromTable"
+    name: "vRouterNumberFromTable"
     bitwidth: 9
   }
 }

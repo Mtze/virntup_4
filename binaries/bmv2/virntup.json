@@ -4,7 +4,7 @@
       "name" : "scalars_0",
       "id" : 0,
       "fields" : [
-        ["vSwitchNumber_0", 9, false],
+        ["vRouterNumber_0", 9, false],
         ["_padding_0", 7, false]
       ]
     },
@@ -178,8 +178,8 @@
       "name" : "deparser",
       "id" : 0,
       "source_info" : {
-        "filename" : "basic.p4",
-        "line" : 189,
+        "filename" : "virntup.p4",
+        "line" : 182,
         "column" : 8,
         "source_fragment" : "MyDeparser"
       },
@@ -195,8 +195,8 @@
       "name" : "calc",
       "id" : 0,
       "source_info" : {
-        "filename" : "basic.p4",
-        "line" : 167,
+        "filename" : "virntup.p4",
+        "line" : 160,
         "column" : 4,
         "source_fragment" : "update_checksum( ..."
       },
@@ -256,7 +256,7 @@
       "id" : 0,
       "runtime_data" : [
         {
-          "name" : "vSwitchNumberFromTable",
+          "name" : "vRouterNumberFromTable",
           "bitwidth" : 9
         }
       ],
@@ -266,7 +266,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "vSwitchNumber_0"]
+              "value" : ["scalars", "vRouterNumber_0"]
             },
             {
               "type" : "runtime_data",
@@ -274,10 +274,10 @@
             }
           ],
           "source_info" : {
-            "filename" : "basic.p4",
+            "filename" : "virntup.p4",
             "line" : 95,
             "column" : 8,
-            "source_fragment" : "vSwitchNumber = vSwitchNumberFromTable"
+            "source_fragment" : "vRouterNumber = vRouterNumberFromTable"
           }
         }
       ]
@@ -309,7 +309,7 @@
             }
           ],
           "source_info" : {
-            "filename" : "basic.p4",
+            "filename" : "virntup.p4",
             "line" : 99,
             "column" : 8,
             "source_fragment" : "standard_metadata.egress_spec = port"
@@ -328,7 +328,7 @@
             }
           ],
           "source_info" : {
-            "filename" : "basic.p4",
+            "filename" : "virntup.p4",
             "line" : 100,
             "column" : 8,
             "source_fragment" : "hdr.ethernet.srcAddr = hdr.ethernet.dstAddr"
@@ -347,7 +347,7 @@
             }
           ],
           "source_info" : {
-            "filename" : "basic.p4",
+            "filename" : "virntup.p4",
             "line" : 101,
             "column" : 8,
             "source_fragment" : "hdr.ethernet.dstAddr = dstAddr"
@@ -389,7 +389,7 @@
             }
           ],
           "source_info" : {
-            "filename" : "basic.p4",
+            "filename" : "virntup.p4",
             "line" : 102,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.ttl = hdr.ipv4.ttl - 1"
@@ -411,8 +411,8 @@
             }
           ],
           "source_info" : {
-            "filename" : "basic.p4",
-            "line" : 107,
+            "filename" : "virntup.p4",
+            "line" : 106,
             "column" : 8,
             "source_fragment" : "mark_to_drop(standard_metadata)"
           }
@@ -433,8 +433,8 @@
             }
           ],
           "source_info" : {
-            "filename" : "basic.p4",
-            "line" : 107,
+            "filename" : "virntup.p4",
+            "line" : 106,
             "column" : 8,
             "source_fragment" : "mark_to_drop(standard_metadata)"
           }
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "name" : "basic92",
+      "name" : "virntup92",
       "id" : 4,
       "runtime_data" : [],
       "primitives" : [
@@ -451,7 +451,7 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "vSwitchNumber_0"]
+              "value" : ["scalars", "vRouterNumber_0"]
             },
             {
               "type" : "hexstr",
@@ -459,10 +459,10 @@
             }
           ],
           "source_info" : {
-            "filename" : "basic.p4",
+            "filename" : "virntup.p4",
             "line" : 92,
             "column" : 4,
-            "source_fragment" : "vSwitchNumber_t vSwitchNumber = 0;"
+            "source_fragment" : "vRouterNumber_t vRouterNumber = 0;"
           }
         }
       ]
@@ -473,21 +473,21 @@
       "name" : "ingress",
       "id" : 0,
       "source_info" : {
-        "filename" : "basic.p4",
+        "filename" : "virntup.p4",
         "line" : 87,
         "column" : 8,
         "source_fragment" : "MyIngress"
       },
-      "init_table" : "tbl_basic92",
+      "init_table" : "tbl_virntup92",
       "tables" : [
         {
-          "name" : "tbl_basic92",
+          "name" : "tbl_virntup92",
           "id" : 0,
           "source_info" : {
-            "filename" : "basic.p4",
+            "filename" : "virntup.p4",
             "line" : 92,
             "column" : 4,
-            "source_fragment" : "vSwitchNumber_t vSwitchNumber = 0;"
+            "source_fragment" : "vRouterNumber_t vRouterNumber = 0;"
           },
           "key" : [],
           "match_type" : "exact",
@@ -497,10 +497,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [4],
-          "actions" : ["basic92"],
+          "actions" : ["virntup92"],
           "base_default_next" : "node_3",
           "next_tables" : {
-            "basic92" : "node_3"
+            "virntup92" : "node_3"
           },
           "default_entry" : {
             "action_id" : 4,
@@ -510,13 +510,13 @@
           }
         },
         {
-          "name" : "MyIngress.vSwitchNumberMatching",
+          "name" : "MyIngress.vRouterNumberMatching",
           "id" : 1,
           "source_info" : {
-            "filename" : "basic.p4",
-            "line" : 114,
+            "filename" : "virntup.p4",
+            "line" : 110,
             "column" : 10,
-            "source_fragment" : "vSwitchNumberMatching"
+            "source_fragment" : "vRouterNumberMatching"
           },
           "key" : [
             {
@@ -550,8 +550,8 @@
           "name" : "MyIngress.ipv4NextHopLPM",
           "id" : 2,
           "source_info" : {
-            "filename" : "basic.p4",
-            "line" : 129,
+            "filename" : "virntup.p4",
+            "line" : 122,
             "column" : 10,
             "source_fragment" : "ipv4NextHopLPM"
           },
@@ -564,8 +564,8 @@
             },
             {
               "match_type" : "exact",
-              "name" : "vSwitchNumber",
-              "target" : ["scalars", "vSwitchNumber_0"],
+              "name" : "vRouterNumber",
+              "target" : ["scalars", "vRouterNumber_0"],
               "mask" : null
             }
           ],
@@ -596,8 +596,8 @@
           "name" : "node_3",
           "id" : 0,
           "source_info" : {
-            "filename" : "basic.p4",
-            "line" : 144,
+            "filename" : "virntup.p4",
+            "line" : 137,
             "column" : 12,
             "source_fragment" : "hdr.ipv4.isValid()"
           },
@@ -613,7 +613,7 @@
             }
           },
           "false_next" : null,
-          "true_next" : "MyIngress.vSwitchNumberMatching"
+          "true_next" : "MyIngress.vRouterNumberMatching"
         }
       ]
     },
@@ -621,8 +621,8 @@
       "name" : "egress",
       "id" : 1,
       "source_info" : {
-        "filename" : "basic.p4",
-        "line" : 155,
+        "filename" : "virntup.p4",
+        "line" : 148,
         "column" : 8,
         "source_fragment" : "MyEgress"
       },
@@ -637,8 +637,8 @@
       "name" : "cksum",
       "id" : 0,
       "source_info" : {
-        "filename" : "basic.p4",
-        "line" : 167,
+        "filename" : "virntup.p4",
+        "line" : 160,
         "column" : 4,
         "source_fragment" : "update_checksum( ..."
       },
@@ -700,7 +700,7 @@
       ["standard_metadata", "priority"]
     ]
   ],
-  "program" : "basic.p4",
+  "program" : "/out/virntup.p4i",
   "__meta__" : {
     "version" : [2, 23],
     "compiler" : "https://github.com/p4lang/p4c"
