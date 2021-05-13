@@ -10,7 +10,7 @@ You can find the P4Runtime client which is used to configure the tables automati
 
 # Program Design 
 
-![Virntup_4_ingress](doc/img/virntup_4_ingress)
+![Virntup_4_ingress](doc/img/virntup_4_ingress.png)
 
 The P4 implementation is very straight forward. We first need to find out which vRouter should be consulted if a packet arrives on port x. Hence we apply the `vRouterNumberMatching` table. If we found a vRouter, we set the `vRouterNumber` for the current packet. If not we drop the packet. 
 
